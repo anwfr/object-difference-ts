@@ -1,6 +1,6 @@
 # object-difference-ts
-- Getting the difference between two object structures
-- Diff support for Array, Map, object properties
+- Get the difference between two object structures
+- Support for Array, Map, object properties
 - Typescript
 
 ## Usage
@@ -14,7 +14,7 @@ import {getDifference} from '../lib/object-difference-ts'
 let diff = getDifference(foo, bar)
 ```
 
-## TODO
+## To do
 - package as NPM module
 - tests
 
