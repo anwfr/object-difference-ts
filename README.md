@@ -15,7 +15,7 @@ let diff = getDifference(foo, bar)
 ```
 
 
-### Get quickdiffs (for better performances)
+### Get quickdiffs (better performances for large objects)
 
 ```javascript
 import {getDifference, setQuickDiffTresholdDefault} from '../lib/object-difference-ts'
