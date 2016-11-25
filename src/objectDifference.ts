@@ -73,25 +73,37 @@ const reduceSide = (side, options) => (object, annotatedKey) => {
   return object
 }
 
-
+const QUICKDIFF_INDICE = '_QUICKDIFF_'
 
 const objectDifference = (a, b, options) => {
-  if (a.typeTarifsChecked && a.typeTarifsChecked.size > 0) {
-  }
   var mapToObject = function(map) {
     if (map instanceof Map) {
       let obj = {};
-      map.forEach((value, key) => {
-        obj[key] = mapToObject(value);
-      });
+      if (options.quickDiffTreshold && map.size>options.quickDiffTreshold) {
+        // quick diff based on map length
+        obj[QUICKDIFF_INDICE]=map.size
+      }
+      else {
+        // full diff based on map entries
+        map.forEach((value, key) => {
+          obj[key] = mapToObject(value);
+        });
+      }
       return obj
     }
 
     else if (map instanceof Object) {
       let result = {};
-      Object.keys(map).forEach(key => {
-        result[key] = mapToObject(map[key])
-      })
+      if (options.quickDiffTreshold && map.length>options.quickDiffTreshold) {
+        // quick diff based on object length
+        result[QUICKDIFF_INDICE]=map.length
+      }
+      else {
+        // full diff based on object keys
+        Object.keys(map).forEach(key => {
+          result[key] = mapToObject(map[key])
+        })
+      }
       return result;
       //let result = Object.assign({}, map) // copy value
       //return result

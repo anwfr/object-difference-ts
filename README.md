@@ -2,14 +2,27 @@
 - Get the difference between two object structures
 - Support for Array, Map, object properties
 - Typescript
+- Quick-diff for large objects/maps: compare object size instead of each property for large objects
 
 ## Usage
 
-### Store configuration
-Get diffs
+### Get diffs
 
 ```javascript
 import {getDifference} from '../lib/object-difference-ts'
+
+let diff = getDifference(foo, bar)
+```
+
+
+### Get quickdiffs (for better performances)
+
+```javascript
+import {getDifference, setQuickDiffTresholdDefault} from '../lib/object-difference-ts'
+
+// will compare objets/maps size when they have more than 1000 entries
+// will compare their properties/entries when they have less than 1000 entries
+setQuickDiffTresholdDefault(1000)
 
 let diff = getDifference(foo, bar)
 ```

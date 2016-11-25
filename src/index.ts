@@ -1,1 +1,1 @@
-export {getDifference} from './getDifference'
+export {getDifference,setQuickDiffTresholdDefault} from './getDifference'
