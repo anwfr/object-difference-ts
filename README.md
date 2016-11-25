@@ -22,9 +22,14 @@ import {getDifference, setQuickDiffTresholdDefault} from '../lib/object-differen
 
 // will compare objets/maps size when they have more than 1000 entries
 // will compare their properties/entries when they have less than 1000 entries
+let options = {quickDiffTreshold:1000}
+let diff = getDifference(foo, bar, options)
+
+
+// setting quickdiffTreshold globally
 setQuickDiffTresholdDefault(1000)
 
-let diff = getDifference(foo, bar)
+let diff2 = getDifference(foo, bar)
 ```
 
 ## To do
