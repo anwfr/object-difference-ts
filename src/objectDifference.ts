@@ -15,10 +15,10 @@ let hasOwnProperty = function(o, key) {
 };
 
 const keysUnion = (a, b) =>
-  getKeys(a)
-    .concat(
-      getKeys(b)
-        .filter(key => !hasOwnProperty(a,key)))
+    getKeys(a)
+        .concat(
+        getKeys(b)
+            .filter(key => !hasOwnProperty(a,key)))
 
 const REMOVED = 0
 const KEPT = 1
@@ -59,9 +59,9 @@ const reduceSide = (side, options) => (object, annotatedKey) => {
 
     case KEPT:
       const comparisonResult = options.comparisonFunction(
-        annotatedKey.value[LEFT],
-        annotatedKey.value[RIGHT],
-        options
+          annotatedKey.value[LEFT],
+          annotatedKey.value[RIGHT],
+          options
       )
 
       if (comparisonResult != null) {
@@ -94,7 +94,7 @@ const objectDifference = (a, b, options) => {
 
     else if (map instanceof Object) {
       let result = {};
-      if (options.quickDiffTreshold && map.length>options.quickDiffTreshold) {
+      if (options.quickDiffTreshold && Object.keys(map).length>options.quickDiffTreshold) {
         // quick diff based on object length
         result[QUICKDIFF_INDICE]=map.length
       }
@@ -105,8 +105,6 @@ const objectDifference = (a, b, options) => {
         })
       }
       return result;
-      //let result = Object.assign({}, map) // copy value
-      //return result
     }
     return map
   }
@@ -115,16 +113,16 @@ const objectDifference = (a, b, options) => {
   b = mapToObject(b)
 
   const result = [LEFT, RIGHT].map(side =>
-    keysUnion(a, b)
-      .map(annotateKey(a, b))
-      .reduce(reduceSide(side, options), {}))
+      keysUnion(a, b)
+          .map(annotateKey(a, b))
+          .reduce(reduceSide(side, options), {}))
       .map(side =>
-        getKeys(side).length > 0
-          ? side
-          : undefined)
+          getKeys(side).length > 0
+              ? side
+              : undefined)
   return result[LEFT] === undefined && result[RIGHT] === undefined
-    ? undefined
-    : result
+      ? undefined
+      : result
 }
 
 export { objectDifference }
