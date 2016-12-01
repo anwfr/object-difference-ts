@@ -96,7 +96,7 @@ const objectDifference = (a, b, options) => {
       let result = {};
       if (options.quickDiffTreshold && Object.keys(map).length>options.quickDiffTreshold) {
         // quick diff based on object length
-        result[QUICKDIFF_INDICE]=map.length
+        result[QUICKDIFF_INDICE] = Object.keys(map).length
       }
       else {
         // full diff based on object keys
