@@ -1,7 +1,7 @@
 # object-difference-ts
 - Get the difference between two object structures
 - Support for Array, Map, object properties
-- Typescript
+- Typescript and webpack
 - Quick-diff for large objects/maps: compare object size instead of each property for large objects
 
 ## Usage
